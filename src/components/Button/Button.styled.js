@@ -25,4 +25,7 @@ export const LoadMoreBtn = styled.button`
   &:focus {
     background-color: #303f9f;
   }
+  &:disabled {
+    background-color: #9ba0ba;
+  }
 `;

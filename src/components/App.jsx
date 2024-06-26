@@ -15,6 +15,7 @@ export const App = () => {
 
   useEffect(() => {
     const fetchImages = async () => {
+      setLoadbtnClickableStatus(true);
       setOnLoading(true);
       try {
         const imagesResponse = await fetchimages(q, page);
