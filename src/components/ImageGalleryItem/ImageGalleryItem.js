@@ -1,42 +1,32 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { GalleryItem, GalleryItemImage } from './ImageGalleryItem.styled';
 import { ModalBox } from 'components/Modal/Modal';
 
-export class ImageGalleryItem extends Component {
-  state = {
-    isModalOpen: false,
+export const ImageGalleryItem = ({ webformatImg, tags, id, largeImageURL }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
   };
-  openModal = () => {
-    this.setState({
-      isModalOpen: true,
-    });
-  };
-  closeModal = () => {
-    this.setState({
-      isModalOpen: false,
-    });
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
-  render() {
-    const { isModalOpen } = this.state;
-    const { webformatImg, tags, id, largeImageURL } = this.props;
-
-    return (
-      <GalleryItem id={id}>
-        <GalleryItemImage
-          src={webformatImg}
-          alt={tags}
-          onClick={evt => {
-            this.openModal(evt, largeImageURL);
-          }}
-        />
-        <ModalBox
-          large={largeImageURL}
-          alt={tags}
-          isModalOpen={isModalOpen}
-          closeModal={this.closeModal}
-        />
-      </GalleryItem>
-    );
-  }
-}
+  return (
+    <GalleryItem id={id}>
+      <GalleryItemImage
+        src={webformatImg}
+        alt={tags}
+        onClick={evt => {
+          openModal(evt, largeImageURL);
+        }}
+      />
+      <ModalBox
+        large={largeImageURL}
+        alt={tags}
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+      />
+    </GalleryItem>
+  );
+};
