@@ -26,6 +26,7 @@ export const App = () => {
         setImages(prevImages => [...prevImages, ...imagesResponse.hits]);
       } catch (error) {
         toast.error(error.message);
+        setLoadbtnClickableStatus(false);
       } finally {
         setOnLoading(false);
       }
